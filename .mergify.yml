@@ -5,3 +5,4 @@ queue_rules:
     merge_method: squash
 merge_queue:
   max_parallel_checks: 5
+
