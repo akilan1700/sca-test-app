@@ -1,0 +1,7 @@
+queue_rules:
+  - name: test queue
+    batch_size: 2
+    batch_max_wait_time: "1"
+    merge_method: squash
+merge_queue:
+  max_parallel_checks: 5
