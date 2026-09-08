@@ -1,3 +1,10 @@
+queue_rules:
+  - name: test queue
+    batch_size: 2
+    batch_max_wait_time: "1"
+    merge_method: squash
+merge_queue:
+  max_parallel_checks: 5
 merge_protections:
   - name: Enforce conventional commit
     description: Make sure that we follow https://www.conventionalcommits.org/en/v1.0.0/
