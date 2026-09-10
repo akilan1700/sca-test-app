@@ -1,25 +1,25 @@
 queue_rules:
   - name: default
     merge_method: squash
+    batch_size: 1
 
     queue_conditions:
       - label!=WIP
-      - draft=false
+      - -draft
 
     merge_conditions:
       - "#approved-reviews-by>=1"
       - check-success=CI
       - base=main
 
-    batch_size: 1
-
 
 pull_request_rules:
 
   - name: Add approved PRs to merge queue
+
     conditions:
       - base=main
-      - draft=false
+      - -draft
       - "#approved-reviews-by>=1"
       - check-success=CI
 
