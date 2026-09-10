@@ -1,16 +1,28 @@
 queue_rules:
-  - name: test queue
-    batch_size: 2
-    batch_max_wait_time: "1h"
+  - name: default
     merge_method: squash
-merge_queue:
-  max_parallel_checks: 5
-merge_protections:
-  - name: Enforce conventional commit
-    description: Make sure that we follow https://www.conventionalcommits.org/en/v1.0.0/
-    if:
-      - base = main
-    success_conditions:
-      - "title ~=
-        ^(fix|feat|docs|style|refactor|perf|test|build|ci|chore|revert)(?:\\(.+\
-        \\))?:"
+
+    queue_conditions:
+      - label!=WIP
+      - draft=false
+
+    merge_conditions:
+      - "#approved-reviews-by>=1"
+      - check-success=CI
+      - base=main
+
+    batch_size: 1
+
+
+pull_request_rules:
+
+  - name: Add approved PRs to merge queue
+    conditions:
+      - base=main
+      - draft=false
+      - "#approved-reviews-by>=1"
+      - check-success=CI
+
+    actions:
+      queue:
+        name: default
