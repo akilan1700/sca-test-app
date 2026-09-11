@@ -9,19 +9,18 @@ queue_rules:
 
     merge_conditions:
       - "#approved-reviews-by>=1"
-      - check-success=CI
+      - check-success=*
       - base=main
 
 
 pull_request_rules:
-
   - name: Add approved PRs to merge queue
 
     conditions:
       - base=main
       - -draft
       - "#approved-reviews-by>=1"
-      - check-success=CI
+      - check-success=*
 
     actions:
       queue:
