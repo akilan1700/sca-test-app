@@ -12,7 +12,6 @@ queue_rules:
       - check-success=*
       - base=main
 
-
 pull_request_rules:
   - name: Add approved PRs to merge queue
 
@@ -25,3 +24,5 @@ pull_request_rules:
     actions:
       queue:
         name: default
+merge_protections_settings:
+  auto_merge_conditions: true
